@@ -1,3 +1,4 @@
+import genres
 from album import Albums
 
 def introduction():
@@ -11,8 +12,6 @@ def introduction():
 """)
     print("Welcome to Pitchfork's Best of 2022!")
 
-def search(genre):
-    pass
 
 def display_results():
     pass
@@ -21,7 +20,7 @@ def main():
     user_input = input("Enter a genre of album you would like to check out: ")
     print()
     try:
-        genre = search(user_input)
+        genre = genres.search(user_input)
         if genre == None:
             raise ValueError('Not a valid genre')
     except ValueError as error:
