@@ -55,11 +55,7 @@ def display_album(album):
     print(f"Pitchfork Review:   {album.review}\n\n")
 
 def main():
-    
-    introduction()
-    albums = generate_album_graph('album_data.json')
-    
-    user_input = input("Enter a genre of album you would like to check out: ")
+    user_input = input("\nEnter a genre of album you would like to check out: ")
     print()
     try:
         genre = genres.search(user_input)
@@ -73,11 +69,12 @@ def main():
     print(f"\nThese are Pitchfork's top {genre} albums for 2022:\n")
     top_albums = albums.show_edges(genre_vertex)
     for key, album in top_albums.items():
-        print(f"\t{key}. {album.album_title}: {album.artist}")
-        
+        print(f"\t{key}. {album.album_title}: {album.artist}")    
     print()
+    
     print("Enter the number of the album you would like to view, or type 'q' to quit.")
     print("Or type 's' to select a different genre.")
+    
     while True:
         user_input = input("Please enter a selection here: ")
         if user_input == 's':
@@ -92,7 +89,10 @@ def main():
             break
         except ValueError:
             print("Invalid input!")
+    
     display_album(selected_album)
 
 if __name__ == '__main__':
+    introduction()
+    albums = generate_album_graph('album_data.json')
     main()
