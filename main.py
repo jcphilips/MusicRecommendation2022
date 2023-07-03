@@ -91,7 +91,7 @@ def main():
         except ValueError:
             print("Invalid input!")
     
-    print(f"Seleced {selected_album.album_title}: {selected_album.artist}")
+    print(f"\nSeleced {selected_album.album_title}: {selected_album.artist}")
     display_album(selected_album)
 
     user_input = ''
