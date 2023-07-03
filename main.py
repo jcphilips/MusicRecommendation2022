@@ -55,7 +55,8 @@ def display_album(album):
     print(f"Pitchfork Review:   {album.review}\n\n")
 
 def main():
-    user_input = input("\nEnter a genre of album you would like to check out: ")
+    print(f"\nGenres: {', '.join(genres.genres)}")
+    user_input = input("Enter a genre you would like to check out: ")
     print()
     try:
         genre = genres.search(user_input)
@@ -90,6 +91,7 @@ def main():
         except ValueError:
             print("Invalid input!")
     
+    print(f"Seleced {selected_album.album_title}: {selected_album.artist}")
     display_album(selected_album)
 
     user_input = ''
