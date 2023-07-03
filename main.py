@@ -92,6 +92,17 @@ def main():
     
     display_album(selected_album)
 
+    user_input = ''
+    while user_input == '':
+        user_input = input("Do you want to quit or continue browsing?\n" 
+                           "Enter 'q' to quit or 'c' to continue: ")
+        if user_input == 'q':
+            print("\nSee you next time!\n")
+            return
+        if user_input == 'c':
+            return main()
+        user_input = ''
+
 if __name__ == '__main__':
     introduction()
     albums = generate_album_graph('album_data.json')
