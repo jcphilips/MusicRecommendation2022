@@ -12,7 +12,9 @@ class Graph:
             self.graph_dict[to_vertex.value].add_edge(from_vertex.value, weight)
 
     def show_edges(self, vertex):
-        edge_values = []
+        edge_values = {}
+        count = 1
         for neighbor in vertex.edges:
-            edge_values.append(self.graph_dict[neighbor].value)
+            edge_values[count] = self.graph_dict[neighbor].value
+            count += 1
         return edge_values
