@@ -9,9 +9,11 @@ def search(user_input:str):
     Returns:
         genre (str): returns genre if true, None if false
     """    
+    if len(user_input) < 3:
+        raise ValueError("You must enter the first 3 characters of a genre to search")
     user_input = user_input.lower().strip()
     for genre in genres:
-        if user_input in genre.lower():
+        if user_input.startswith(genre.lower()):
             print(f"You have selected {genre}!")
             return genre
     return None
