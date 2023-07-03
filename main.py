@@ -32,6 +32,8 @@ def generate_album_graph(data_file):
         
         for genre in entry['genres']:
             albums.add_edge(albums.graph_dict[genre], album_vertex)
+            
+    return albums
 
 def create_album(data):
     artist =        data['artist']
@@ -44,7 +46,19 @@ def create_album(data):
     album = Album(album_title, artist, genres, label, rating, review)
     return album
 
+def display_album(album):
+    print(f"\n\nAlbum Title:        {album.album_title}")
+    print(f"Artist:             {album.artist}")
+    print(f"Genres:             {', '.join(album.genres)}")
+    print(f"Label:              {album.label}")
+    print(f"Pitchfork Rating:   {album.rating}")
+    print(f"Pitchfork Review:   {album.review}\n\n")
+
 def main():
+    
+    introduction()
+    albums = generate_album_graph('album_data.json')
+    
     user_input = input("Enter a genre of album you would like to check out: ")
     print()
     try:
@@ -53,9 +67,32 @@ def main():
             raise ValueError('Not a valid genre')
     except ValueError as error:
         print(f'{error}. Try again!')
-        main()
+        return main()
+    
+    genre_vertex = albums.graph_dict[genre]
+    print(f"\nThese are Pitchfork's top {genre} albums for 2022:\n")
+    top_albums = albums.show_edges(genre_vertex)
+    for key, album in top_albums.items():
+        print(f"\t{key}. {album.album_title}: {album.artist}")
+        
+    print()
+    print("Enter the number of the album you would like to view, or type 'q' to quit.")
+    print("Or type 's' to select a different genre.")
+    while True:
+        user_input = input("Please enter a selection here: ")
+        if user_input == 's':
+            return main()
+        if user_input == 'q':
+            return
+        try:
+            user_input = int(user_input)
+            selected_album = top_albums.get(user_input, None)
+            if not selected_album:
+                raise ValueError
+            break
+        except ValueError:
+            print("Invalid input!")
+    display_album(selected_album)
 
 if __name__ == '__main__':
-    introduction()
-    generate_graph()
     main()
