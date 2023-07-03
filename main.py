@@ -1,6 +1,6 @@
 from vertex import Vertex
 from graph import Graph
-from album import Albums
+from album import Album
 import genres
 import json
 
