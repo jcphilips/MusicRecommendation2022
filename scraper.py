@@ -18,7 +18,7 @@ def scrape_album_data(url):
     pitchfork_data = []
     for result in title_tag:
         title = result.text
-        artist, album_title = title.split(':', 1)
+        artist, album_title = title.split(': ', 1)
         review = result.next_sibling.text
         album_data = {
             'artist': artist,
