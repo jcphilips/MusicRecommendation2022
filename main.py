@@ -1,5 +1,8 @@
-import genres
+from vertex import Vertex
+from graph import Graph
 from album import Albums
+import genres
+import json
 
 def introduction():
     print("""▓████▓▓█▓▒░░░▓▓▓░░░░░░░░░░░░░░░░▒▓▓█▓░░░░░░░░░░▒▓▓▓██▒░░░░░░░░░░░░░░▒▓▓██░░░░░░░
@@ -11,10 +14,17 @@ def introduction():
 ▓█████▓░░░░▒▓████▒▒████▓░▒█████▒▓████▒▒████▓▒████▓░░▓██▒██▓░░▓████▒░▒████▒░▓███▓
 """)
     print("Welcome to Pitchfork's Best of 2022!")
-
-
-def display_results():
-    pass
+    
+def create_album(data):
+    artist =        data['artist']
+    album_title =   data['album_title']
+    genres =        data["genres"]
+    label =         data["label"]
+    rating =        data["rating"]
+    review =        data['review']
+    
+    album = Album(album_title, artist, genres, label, rating, review)
+    return album
 
 def main():
     user_input = input("Enter a genre of album you would like to check out: ")
@@ -29,4 +39,5 @@ def main():
 
 if __name__ == '__main__':
     introduction()
+    generate_graph()
     main()
